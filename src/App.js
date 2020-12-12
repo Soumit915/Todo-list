@@ -18,7 +18,7 @@ class App extends React.Component
     var currentText = event.target.value;
     this.setState({
         todo_input: currentText,
-        hasText: (currentText!="")});
+        hasText: (currentText!=="")});
   }
 
   submit = (event) => {
@@ -40,7 +40,10 @@ class App extends React.Component
   }
 
   deleteItem = (id) => {
-    this.newtododata = this.state.tododata.filter((item) => {if(item.id!==id)return item});
+    this.newtododata = this.state.tododata.filter((item) => {
+      if(item.id!==id)return item
+      else return null;
+    });
     this.setState({tododata: this.newtododata});
   }
 
@@ -49,9 +52,13 @@ class App extends React.Component
   }
 
   controlEdit = (id) => {
-    this.newinput = this.state.tododata.filter((item) => {if(item.id===id)return item});
+    this.newinput = this.state.tododata.filter((item) => {
+      if(item.id===id)return item
+      else return null;
+    });
     this.newtododata = this.state.tododata.filter((item) => {
       if(item.id!==id)return item
+      else return null;
     });
 
     this.setState({
@@ -59,7 +66,7 @@ class App extends React.Component
       todo_input: this.newinput[0].item,
       hasText: true,
       editItem: true
-    }, () => {console.log("test: "+this.state.editItem+" "+this.state.todo_input)});
+    });
   }
 
   render()
